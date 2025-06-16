@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// LoginPage's Header widget.
+/// - A stateless widget for appearance
 class LoginHeader extends StatelessWidget {
 
   const LoginHeader({super.key});

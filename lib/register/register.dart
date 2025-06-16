@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neurotask_ng/register/form.dart';
 import 'package:neurotask_ng/register/header.dart';
 
+/// An orchestrator widget that renders the /register page's layout
 class RegisterPage extends StatelessWidget {
 
   const RegisterPage({super.key});
@@ -12,20 +13,24 @@ class RegisterPage extends StatelessWidget {
       appBar: AppBar(),
       body: Padding(
         padding: EdgeInsetsGeometry.symmetric(vertical: 0, horizontal: 82.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
 
-              const SizedBox(height: 80),
+                const SizedBox(height: 80),
 
-              const RegisterHeader(),
+                const RegisterHeader(),
 
-              const SizedBox(height: 60),
+                const SizedBox(height: 60),
 
-              RegisterForm(),
+                RegisterForm(),
 
-            ],
+                const SizedBox(height: 160),
+
+              ],
+            ),
           ),
         ),
       ),

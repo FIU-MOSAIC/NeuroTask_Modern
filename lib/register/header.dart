@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// RegisterPage's Header widget.
+/// - A stateless widget for appearance
 class RegisterHeader extends StatelessWidget {
 
   const RegisterHeader({super.key});

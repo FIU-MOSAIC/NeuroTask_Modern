@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// LoginPage's Form widget.
+/// - Holds all the stateful data the user provides when logging in.
 class LoginForm extends StatefulWidget {
 
   const LoginForm({super.key});
