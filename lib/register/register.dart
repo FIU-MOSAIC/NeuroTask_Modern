@@ -17,11 +17,11 @@ class RegisterPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const SizedBox(height: 0),
+                const SizedBox(height: 80),
 
                 const RegisterHeader(),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 60),
 
                 RegisterForm(),
 

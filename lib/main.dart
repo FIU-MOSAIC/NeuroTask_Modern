@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:neurotask_ng/register/register.dart';
-import 'firebase_options.dart';   
+import 'utils/firebase_options.dart';   
 import 'package:firebase_core/firebase_core.dart';
 import 'login/login.dart';
 
