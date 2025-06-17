@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "874422856741",
+    "project_id": "neurotask-c0136",
+    "storage_bucket": "neurotask-c0136.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874422856741:android:54e34c8481cad71d6763cc",
+        "android_client_info": {
+          "package_name": "com.example.neurotask_ng"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk8FD6jHcVegtMjtKoOcQSGceJhW4G9_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

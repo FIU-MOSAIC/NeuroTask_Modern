@@ -1,0 +1,36 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "neurotask-c0136",
+          "appId": "1:874422856741:android:54e34c8481cad71d6763cc",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "neurotask-c0136",
+          "appId": "1:874422856741:ios:8d6b5e96b9dc20b46763cc",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "neurotask-c0136",
+          "configurations": {
+            "android": "1:874422856741:android:54e34c8481cad71d6763cc",
+            "ios": "1:874422856741:ios:8d6b5e96b9dc20b46763cc"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "nam5",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}

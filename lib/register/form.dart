@@ -1,22 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:get/instance_manager.dart';
+import 'package:get/get.dart';
+import '../services/auth_service.dart'; // AuthService import
 
 /// RegisterPage's Form widget.
 /// - Holds all the stateful data the user provides when signing up.
 class RegisterForm extends StatefulWidget {
-
   const RegisterForm({super.key});
-  
+
   @override
   State<StatefulWidget> createState() => _RegisterFormState();
-
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-
   final _controller = Get.put(RegisterController());
 
   @override
@@ -26,107 +22,95 @@ class _RegisterFormState extends State<RegisterForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
           TextFormField(
             controller: _controller.emailController,
-            validator: (value) => value!.isEmpty ? "Email cannot be empty" : null,
+            validator: (value) =>
+                value!.isEmpty ? "Email cannot be empty" : null,
             decoration: const InputDecoration(
               labelText: 'Email',
-              border: OutlineInputBorder()
+              border: OutlineInputBorder(),
             ),
           ),
-
           const SizedBox(height: 20),
-
           TextFormField(
             controller: _controller.passwordController,
-            validator: (value) => value!.isEmpty ? "Password cannot be empty" : null,
+            validator: (value) =>
+                value!.isEmpty ? "Password cannot be empty" : null,
             obscureText: true,
             decoration: const InputDecoration(
               labelText: 'Password',
-              border: OutlineInputBorder()
+              border: OutlineInputBorder(),
             ),
           ),
-
           const SizedBox(height: 20),
-
           TextFormField(
             controller: _controller.firstNameController,
-            validator: (value) => value!.isEmpty ? "First name must be provided" : null,
+            validator: (value) =>
+                value!.isEmpty ? "First name must be provided" : null,
             decoration: const InputDecoration(
               labelText: 'First name',
-              border: OutlineInputBorder()
+              border: OutlineInputBorder(),
             ),
           ),
-
           const SizedBox(height: 20),
-
           TextFormField(
             controller: _controller.lastNameController,
-            validator: (value) => value!.isEmpty ? "Last name must be provided" : null,
+            validator: (value) =>
+                value!.isEmpty ? "Last name must be provided" : null,
             decoration: const InputDecoration(
               labelText: 'Last name',
-              border: OutlineInputBorder()
+              border: OutlineInputBorder(),
             ),
           ),
-
           const SizedBox(height: 20),
-
           TextFormField(
             controller: _controller.dobController,
             readOnly: true,
             onTap: () => _controller.selectDate(context),
             decoration: const InputDecoration(
               labelText: 'Date of Birth',
-              border: OutlineInputBorder()
+              border: OutlineInputBorder(),
             ),
           ),
-
           const SizedBox(height: 20),
-
           TextFormField(
             controller: _controller.diagnosisController,
-            validator: (value) => value!.isEmpty ? "Diagnosis cannot be empty" : null,
+            validator: (value) =>
+                value!.isEmpty ? "Diagnosis cannot be empty" : null,
             decoration: const InputDecoration(
               labelText: 'Diagnosis',
-              border: OutlineInputBorder()
+              border: OutlineInputBorder(),
             ),
           ),
-
           const SizedBox(height: 20),
-
-          // Picker for activities. Uses CupertinoPicker for native iOS appearance.
           SizedBox(
             height: 60,
             child: CupertinoPicker(
               scrollController: _controller.activityController,
               itemExtent: 40.0,
-              onSelectedItemChanged: _controller.updateActivity, 
-              children: _controller.activities.map((activity) => Center(child: Text(activity))).toList(),
+              onSelectedItemChanged: _controller.updateActivity,
+              children: _controller.activities
+                  .map((activity) => Center(child: Text(activity)))
+                  .toList(),
             ),
           ),
-
           const SizedBox(height: 40),
-
           ElevatedButton(
-            onPressed: _controller.submit,
+            onPressed: () => _controller.submit(),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blueAccent,
               foregroundColor: Colors.white,
-              minimumSize: const Size.fromHeight(50)
+              minimumSize: const Size.fromHeight(50),
             ),
-            child: const Text("Sign up")
+            child: const Text("Sign up"),
           ),
-
         ],
       ),
     );
   }
-
 }
 
 class RegisterController extends GetxController {
-
   final formKey = GlobalKey<FormState>();
 
   final emailController = TextEditingController();
@@ -143,28 +127,17 @@ class RegisterController extends GetxController {
     'Cycling',
     'Boxing',
     'Drumming',
-    'None'
+    'None',
   ];
 
   void updateActivity(int index) {
     selectedActivity.value = index;
   }
 
-  void submit() {
-    if (formKey.currentState!.validate()) {
-      print(
-        "Registering ${emailController.text}:"
-        "\n- First Name: ${firstNameController.text}"
-        "\n- Last Name: ${lastNameController.text}"
-        "\n- DoB: ${dobController.text}"
-        "\n- Diagnosis: ${diagnosisController.text}"
-        "\n- Activity: ${activities[selectedActivity.value]}"
-      );
-    }
-  }
+  // AuthService instance
+  final _authService = AuthService();
 
-  /// selectDate: Pulls up a new screen for the user to select the Date in a neat UI element
-  /// - Returns a Future as it is async (added to Flutter's event loop)
+  /// selectDate: Pulls up a date picker and sets dobController text
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -173,11 +146,36 @@ class RegisterController extends GetxController {
       lastDate: DateTime.now(),
     );
     if (picked != null) {
-      dobController.text = "${picked.toLocal()}".split(' ')[0]; // Remove the time portion
+      dobController.text = "${picked.toLocal()}".split(' ')[0];
     }
   }
 
-  /// Close everything
+  /// Now async: calls AuthService.registerWithEmail
+  Future<void> submit() async {
+    if (!formKey.currentState!.validate()) return;
+
+    try {
+      final user = await _authService.registerWithEmail(
+        email: emailController.text.trim(),
+        password: passwordController.text,
+        firstName: firstNameController.text.trim(),
+        lastName: lastNameController.text.trim(),
+        dob: dobController.text,
+        diagnosis: diagnosisController.text.trim(),
+        activity: activities[selectedActivity.value],
+      );
+      if (user != null) {
+        Get.offAllNamed('/home');
+      }
+    } catch (e) {
+      Get.snackbar(
+        'Registration Error',
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
   @override
   void onClose() {
     emailController.dispose();
@@ -186,7 +184,7 @@ class RegisterController extends GetxController {
     lastNameController.dispose();
     diagnosisController.dispose();
     dobController.dispose();
+    activityController.dispose();
     super.onClose();
   }
-
 }
