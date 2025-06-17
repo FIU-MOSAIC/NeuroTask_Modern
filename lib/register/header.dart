@@ -14,7 +14,7 @@ class RegisterHeader extends StatelessWidget {
           "Sign up",
           style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 40),
+        SizedBox(height: 80),
         Row(
           children: [
             Expanded(child: Divider(thickness: 0.8, color: Colors.grey)),
