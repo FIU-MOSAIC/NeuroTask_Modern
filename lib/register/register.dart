@@ -4,9 +4,8 @@ import 'package:neurotask_ng/register/header.dart';
 
 /// An orchestrator widget that renders the /register page's layout
 class RegisterPage extends StatelessWidget {
-
   const RegisterPage({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +17,6 @@ class RegisterPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-
                 const SizedBox(height: 80),
 
                 const RegisterHeader(),
@@ -28,7 +26,6 @@ class RegisterPage extends StatelessWidget {
                 RegisterForm(),
 
                 const SizedBox(height: 160),
-
               ],
             ),
           ),
@@ -36,5 +33,4 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
-
 }
