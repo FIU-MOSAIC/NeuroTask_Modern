@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:neurotask_ng/login/header.dart';
-import 'package:neurotask_ng/login/form.dart';
+import 'package:neurotask_ng/pages/login/header.dart';
+import 'package:neurotask_ng/pages/login/form.dart';
 
 /// An orchestrator widget that renders the /login page's layout
 class LoginPage extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../services/auth_service.dart'; // AuthService import
+import '../../services/auth_service.dart'; // AuthService import
 
 /// RegisterPage's Form widget.
 /// - Holds all the stateful data the user provides when signing up.
