@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:neurotask_ng/register/form.dart';
-import 'package:neurotask_ng/register/header.dart';
+import 'package:neurotask_ng/pages/register/form.dart';
+import 'package:neurotask_ng/pages/register/header.dart';
 
 /// An orchestrator widget that renders the /register page's layout
 class RegisterPage extends StatelessWidget {
