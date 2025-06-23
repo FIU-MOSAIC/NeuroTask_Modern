@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:neurotask_ng/pages/mainMenu/mainMenu.dart';
 import 'package:neurotask_ng/pages/register/register.dart';
 import 'utils/firebase_options.dart';   
 import 'package:firebase_core/firebase_core.dart';
@@ -25,11 +26,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
       ),
-      //home: const MyHomePage(title: 'Test Page'),
+      //home: const MainMenu(),
       initialRoute: '/login',
       getPages: [
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/register', page: () => const RegisterPage()),
+        GetPage(name: '/home', page: () => const MainMenu())
       ],
     );
   }
