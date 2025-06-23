@@ -26,12 +26,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
       ),
-      home: const MainMenu(),
+      //home: const MainMenu(),
       initialRoute: '/login',
       getPages: [
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/register', page: () => const RegisterPage()),
-        GetPage(name: '/mainMenu', page: () => const MainMenu())
+        GetPage(name: '/home', page: () => const MainMenu())
       ],
     );
   }
