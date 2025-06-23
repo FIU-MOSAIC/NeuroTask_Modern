@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/register', page: () => const RegisterPage()),
+        GetPage(name: '/home', page: () => const MyHomePage(title: 'Test')), // Change to main menu
       ],
     );
   }
