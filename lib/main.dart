@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:neurotask_ng/pages/mainMenu/mainMenu.dart';
+import 'package:neurotask_ng/pages/mainMenu/main_menu.dart';
 import 'package:neurotask_ng/pages/register/register.dart';
 import 'utils/firebase_options.dart';   
 import 'package:firebase_core/firebase_core.dart';
