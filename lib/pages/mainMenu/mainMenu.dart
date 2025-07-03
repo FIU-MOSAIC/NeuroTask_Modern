@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
+import 'package:neurotask_ng/pages/games/grandfather_passage.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({super.key});
@@ -8,6 +9,7 @@ class MainMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+    var games = [GrandFather()];
 
     return Scaffold(
       appBar: AppBar(
@@ -22,15 +24,16 @@ class MainMenu extends StatelessWidget {
       ),
       body: GridView.count(
         crossAxisCount: 3,
-        children: List.generate(9, (index) {
+        children: List.generate(games.length, (index) {
           return Center(
             child: Container(
               height: screenHeight * .4,
               width: screenWidth * .4,
               child: FittedBox(
                 child: FloatingActionButton.extended(
-                  label: Text('$index'),
-                  onPressed: () => print("OH GOD I'VE been PRESSED!"),
+                  label: Text(games[index].title),
+                  icon: games[index].gameIcon,
+                  onPressed: () => Get.toNamed(games[index].route),
                 ),
               ),
             ),
