@@ -49,7 +49,7 @@ class GrandfatherState extends State<GrandFather> {
               tooltip: "Description of how to properly conduct test.",
             ),
             IconButton(
-              onPressed: () => print("submit"),
+              onPressed: () => print("submitting"),
               icon: const Icon(Icons.send),
               tooltip: "Submit recording",
             ),
@@ -74,9 +74,15 @@ class GrandfatherState extends State<GrandFather> {
               //   grandfatherPassageText,
               //   textScaler: TextScaler.linear(2.0),),
               FloatingActionButton.extended(
-                onPressed: () => print("Start Recording"),
-                label: Text("Start Recording"),
-                tooltip: "Start Recording",
+                onPressed: () => {
+                  setState(() {
+                    isStart = !isStart;
+                  }),
+                  print("Start Recording $isStart"),
+                },
+                label: Text(isStart ? "End recording" : "Start Recording"),
+                backgroundColor: isStart ? Colors.red : Colors.blueAccent,
+                tooltip: isStart ? "End Recording" : "Start Recording",
               ),
             ],
           ),
