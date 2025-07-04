@@ -97,6 +97,15 @@ class MemoryGameController extends GameController {
 
   // Method to start a new game
   void startNewGame() {
-    startGame();
+    // Reset game state to show start screen
+    isGameActive.value = false; 
+    
+    // Clear all cards and reset game state
+    cards.clear();
+    flippedCards.clear();
+    score.value = 0;
+    moves.value = 0;
+    pairsFound.value = 0;
+    canFlip.value = true;
   }
 }

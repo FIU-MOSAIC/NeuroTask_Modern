@@ -1,48 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/game/widgets/game_view.dart';
 import '../controllers/memory_game_controller.dart';
 import '../models/card_model.dart';
 
 class MemoryGameView extends StatelessWidget {
-  final controller = Get.put(MemoryGameController());
+  final controller = Get.put(MemoryGameController()); // GetX controller instance
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Memory Game'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.refresh),
-            onPressed: () => controller.startNewGame(),
-            tooltip: 'New Game',
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Game Stats
-            Obx(() => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text('Score: ${controller.score.value}'),
-                Text('Moves: ${controller.moves.value}'),
-                Text('Pairs: ${controller.pairsFound.value}/8'),
-              ],
-            )),
-            SizedBox(height: 20),
-            
-            // Game Area
-            Expanded(
-              child: Obx(() => controller.isGameActive.value
-                ? _buildCardGrid()
-                : _buildStartScreen(),
-              ),
-            ),
-          ],
-        ),
+    return GameView(
+      controller: controller,
+      title: 'Memory Game',
+      instructions: 'Match all the animal pairs. Tap two cards to flip them. If they match, they stay revealed. Try to match all pairs with as few moves as possible!',
+      child: Obx(() => controller.isGameActive.value
+        ? _buildCardGrid()
+        : _buildStartScreen(),
       ),
     );
   }
