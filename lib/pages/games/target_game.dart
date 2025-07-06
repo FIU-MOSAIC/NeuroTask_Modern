@@ -15,7 +15,8 @@ class TargetGame extends StatefulWidget {
 }
 
 class _TargetGameState extends State<TargetGame> {
-
+  bool _isDialogVisible = false;
+  int score = 0;
   double positionX = 0.0;
   double positionY = 0.0;
   Random random = Random();
@@ -35,93 +36,160 @@ class _TargetGameState extends State<TargetGame> {
 
   Timer? timer;
   int second = 30;
-  void startTimer(){
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        second--;
-      });
+  void startTimer() {
+  timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    setState(() {
+      second--;
     });
-  }
 
-  showMyDialog(){
-    return showGeneralDialog(
-      transitionDuration: const Duration(milliseconds: 500),
-      barrierDismissible: false,
-      barrierLabel: MaterialLocalizations.of(context).dialogLabel,
-      context: context, 
-      pageBuilder: (context, animation, secondaryAnimation) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.5,
-              width: MediaQuery.of(context).size.width * 0.55,
-              color: Colors.white,
-              child: Card(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    Text("Target Game",
-                      textAlign: TextAlign.center,
+    if (second < 0) {
+      timer.cancel();
+      showGameOverDialog(); // 👈 New popup
+    }
+  });
+}
+void showGameOverDialog() {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) {
+      return Center(
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.4,
+          width: MediaQuery.of(context).size.width * 0.7,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Material(
+            type: MaterialType.transparency,
+            child: Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Time's Up!",
+                    style: TextStyle(
+                      fontSize: (width / Responsive.designWidth) * 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: height * 0.02),
+                  Text(
+                    "Your Score: $score",
+                    style: TextStyle(
+                      fontSize: (width / Responsive.designWidth) * 35,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: height * 0.04),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Get.to(const HomePage()); // Same as Submit
+                    },
+                    child: Text(
+                      "Tap to Continue",
                       style: TextStyle(
-                        fontSize: (width/Responsive.designWidth) * 40,
+                        fontSize: (width / Responsive.designWidth) * 30,
+                        color: const Color.fromARGB(166, 207, 207, 11),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: height * 0.05),
-                    Padding(
-                      padding: EdgeInsets.only(left: width * 0.02),
-                      child: Text("Instruction",
-                        textAlign: TextAlign.start,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+  void showMyDialog() {
+  if (_isDialogVisible) return;
+
+  _isDialogVisible = true;
+
+  showGeneralDialog(
+    transitionDuration: const Duration(milliseconds: 500),
+    barrierDismissible: false,
+    barrierLabel: MaterialLocalizations.of(context).dialogLabel,
+    context: context,
+    pageBuilder: (context, animation, secondaryAnimation) {
+      return Center( // 👈 Center vertically and horizontally
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.5,
+          width: MediaQuery.of(context).size.width * 0.7,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Material(
+            type: MaterialType.transparency,
+            child: Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              child: ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(20),
+                children: [
+                  Text(
+                    "Target Game",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: (width / Responsive.designWidth) * 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: height * 0.03),
+                  Text(
+                    "Instruction",
+                    style: TextStyle(
+                      fontSize: (width / Responsive.designWidth) * 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: height * 0.015),
+                  Text(
+                    "Tap as many targets as you can in the given 30 seconds. Tap continue to begin and submit when you are done.",
+                    style: TextStyle(
+                      fontSize: (width / Responsive.designWidth) * 28,
+                    ),
+                  ),
+                  SizedBox(height: height * 0.03),
+                  Align(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      onPressed: () {
+                        _isDialogVisible = false;
+                        startTimer(); // Only start on initial instruction
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Continue",
                         style: TextStyle(
-                          fontSize: (width/Responsive.designWidth) * 30,
+                          fontSize: (width / Responsive.designWidth) * 35,
+                          color: const Color.fromARGB(166, 207, 207, 11),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.02,vertical: height * 0.02),
-                      child: Text("Tap as many targets as you can in the given 30 seconds. Tap continue to begin and submit when you are done.",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: (width/Responsive.designWidth) * 30,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: height * 0.02),
-                    TextButton(
-                      onPressed: (){
-                        startTimer();
-                        Navigator.pop(context);
-                      }, 
-                      child: Text("Continue",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: (width/Responsive.designWidth) * 40,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(166, 207, 207, 11),
-                      ),
-                    ),
-                    ),
-                    // SizedBox(height: height * 0.01),
-                    // InkWell(
-                    //   onTap:(){
-                        
-                    //   },
-                    //   child: Icon(Icons.keyboard_arrow_up,
-                    //     size: (width/Responsive.designWidth) * 50,
-                    //   ),
-                    // ),
-                  ],
-                ),
-              )
+                  )
+                ],
+              ),
             ),
-          ],
-        );
-      },
-    );
-  }
+          ),
+        ),
+      );
+    },
+  );
+}
 
   double height = 0.0;
   double width = 0.0;
@@ -179,17 +247,25 @@ class _TargetGameState extends State<TargetGame> {
                         ),
                       )
                     ),
-                    const StartMessage(gameName: 'Target Game',
-                    description: "Tap as many targets as you can in the given 30 seconds. Tap continue to begin and submit when you are done."),
-                    TextButton(
-                      onPressed: (){
-                        timer!.cancel();
-                        Get.to(const HomePage());
-                      },
-                      child: Text("Submit",
-                      style: TextStyle(
-                          fontSize: (width/Responsive.designWidth) * 30,
-                          color: const Color.fromARGB(166, 207, 207, 11),
+                          IconButton(
+                            onPressed: () {
+                              showMyDialog(); // Show instructions on demand
+                            },
+                            icon: Icon(Icons.info_outline),
+                            tooltip: 'Show Instructions',
+                            color: const Color.fromARGB(166, 207, 207, 11),
+                            iconSize: (width / Responsive.designWidth) * 30,
+                          ),
+
+                          TextButton(
+                            onPressed: () {
+                              timer!.cancel();
+                              Get.to(const HomePage());
+                            },
+                            child: Text("Submit",
+                              style: TextStyle(
+                                fontSize: (width / Responsive.designWidth) * 30,
+                                color: const Color.fromARGB(166, 207, 207, 11),
                           ),
                       )
                     ),
@@ -229,6 +305,7 @@ class _TargetGameState extends State<TargetGame> {
                     (circleSize.values.elementAt(index)),
                   );
                   getRandomPosition();
+                  score++; // Increment score on successful hit
                   setState(() {});
                   
                 },
