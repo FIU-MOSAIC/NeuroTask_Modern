@@ -10,9 +10,9 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: EdgeInsetsGeometry.symmetric(vertical: 0, horizontal: 82.0),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsetsGeometry.symmetric(vertical: 0, horizontal: 82.0),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

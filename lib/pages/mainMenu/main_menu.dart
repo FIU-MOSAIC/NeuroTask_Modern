@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:neurotask_ng/pages/games/grandfather_passage.dart';
+import 'package:neurotask_ng/games/grandfather_passage/grandfather_passage.dart';
+import 'package:neurotask_ng/services/auth_service.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(MainMenuController());
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     var games = [GrandFather(),GrandFather(),GrandFather(),GrandFather(),GrandFather(),GrandFather()];
@@ -18,7 +20,7 @@ class MainMenu extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout_sharp),
             tooltip: "Log out",
-            onPressed: () => print("logging out"),
+            onPressed: () => controller.logOut(),
           ),
         ],
       ),
@@ -42,5 +44,14 @@ class MainMenu extends StatelessWidget {
         }),
       ),
     );
+  }
+}
+
+class MainMenuController extends GetxController {
+  final _authService = AuthService();
+
+  Future<void> logOut() async {
+    await _authService.logOut();
+    Get.offAllNamed('/login');
   }
 }

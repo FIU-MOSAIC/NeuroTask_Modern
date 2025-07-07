@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import 'package:neurotask_ng/pages/games/grandfather_passage.dart';
+import 'package:get/get.dart';
+import 'package:neurotask_ng/pages/gateway/auth_gateway.dart';
 import 'package:neurotask_ng/pages/mainMenu/main_menu.dart';
+import 'package:neurotask_ng/games/grandfather_passage/grandfather_passage.dart';
 import 'package:neurotask_ng/pages/register/register.dart';
 import 'utils/firebase_options.dart';   
 import 'package:firebase_core/firebase_core.dart';
 import 'pages/login/login.dart';
+import 'games/memory_game/controllers/memory_game_controller.dart';
+import 'games/memory_game/views/memory_game_view.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Get.put(MemoryGameController());
   runApp(const MyApp());
 }
 
@@ -21,6 +25,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // GetMaterialApp is a wrapper around MaterialApp that allows for easy navigation between pages.
+    // GetX only loads the page when it is needed, GetX controllers are automatically managed, no need for state management setup.
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'NeuroTask',
@@ -28,11 +34,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
       ),
       //home: const MainMenu(),
-      initialRoute: '/login',
+      initialRoute: '/gateway',
+
+      // Pages are only created when accessed, not when the app starts.
       getPages: [
+        GetPage(name: '/gateway', page: () => AuthGatewayPage()),
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/register', page: () => const RegisterPage()),
         GetPage(name: '/home', page: () => const MainMenu()),
+        GetPage(name: '/memory-game', page: () => MemoryGameView()),
         GetPage(name: '/grandfather', page: ()=> const GrandFather()),
       ],
     );

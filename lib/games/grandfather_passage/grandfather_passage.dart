@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neurotask_ng/pages/games/game.dart';
+import 'package:neurotask_ng/core/game/base/game_controller.dart';
 
 class GrandFather extends StatefulWidget implements Game{
   @override

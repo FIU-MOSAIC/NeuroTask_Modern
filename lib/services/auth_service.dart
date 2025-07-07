@@ -6,6 +6,7 @@ class AuthService {
   final _auth = FirebaseAuth.instance;
   final _db   = FirebaseFirestore.instance;
 
+
   Future<User?> loginWithEmail({
     required String email,
     required String password,
@@ -47,4 +48,14 @@ class AuthService {
 
     return user;
   }
+
+  /// Logs out the current user
+  Future<void> logOut() async {
+    await _auth.signOut();
+  }
+
+  bool isLoggedIn() {
+    return FirebaseAuth.instance.currentUser != null;
+  }
+
 }
