@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neurotask_ng/pages/gateway/auth_gateway.dart';
 import 'package:neurotask_ng/pages/mainMenu/main_menu.dart';
+import 'package:neurotask_ng/games/grandfather_passage/grandfather_passage.dart';
 import 'package:neurotask_ng/pages/register/register.dart';
 import 'utils/firebase_options.dart';   
 import 'package:firebase_core/firebase_core.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/register', page: () => const RegisterPage()),
         GetPage(name: '/home', page: () => const MainMenu()),
-        GetPage(name: '/memory-game', page: () => MemoryGameView())
+        GetPage(name: '/memory-game', page: () => MemoryGameView()),
+        GetPage(name: '/grandfather', page: ()=> const GrandFather()),
       ],
     );
   }
