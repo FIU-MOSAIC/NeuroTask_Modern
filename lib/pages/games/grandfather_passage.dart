@@ -60,7 +60,7 @@ class GrandfatherState extends State<GrandFather> {
             children: [
               SizedBox(
                 width: width * .7,
-                height: height * .8,
+                height: height * .7,
                 child: Scrollbar(
                   child: SingleChildScrollView(
                     child: Text(

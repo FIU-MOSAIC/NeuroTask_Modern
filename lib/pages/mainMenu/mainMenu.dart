@@ -9,7 +9,7 @@ class MainMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    var games = [GrandFather()];
+    var games = [GrandFather(),GrandFather(),GrandFather(),GrandFather(),GrandFather(),GrandFather()];
 
     return Scaffold(
       appBar: AppBar(
@@ -26,10 +26,11 @@ class MainMenu extends StatelessWidget {
         crossAxisCount: 3,
         children: List.generate(games.length, (index) {
           return Center(
-            child: Container(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: SizedBox(
               height: screenHeight * .4,
               width: screenWidth * .4,
-              child: FittedBox(
                 child: FloatingActionButton.extended(
                   label: Text(games[index].title),
                   icon: games[index].gameIcon,
