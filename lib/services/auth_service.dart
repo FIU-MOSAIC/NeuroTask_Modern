@@ -53,4 +53,9 @@ class AuthService {
   Future<void> logOut() async {
     await _auth.signOut();
   }
+
+  bool isLoggedIn() {
+    return FirebaseAuth.instance.currentUser != null;
+  }
+
 }
