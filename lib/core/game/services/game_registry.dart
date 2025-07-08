@@ -13,7 +13,7 @@ class GameRegistry {
     const GameInfo(
       title: 'Grandfather Passage',
       gameIcon: Icons.book,
-      route: '/grandfather-passage',
+      route: '/grandfather',
       description: 'Reading comprehension test',
       isImplemented: false,
     ),
@@ -48,7 +48,7 @@ class GameRegistry {
     const GameInfo(
       title: 'Visuospatial Test',
       gameIcon: Icons.grid_4x4,
-      route: '/visuospatial-test',
+      route: '/visuospatial-game',
       description: 'Spatial reasoning and pattern recognition',
       isImplemented: false,
     ),
