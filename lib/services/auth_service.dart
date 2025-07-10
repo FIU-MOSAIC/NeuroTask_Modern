@@ -6,6 +6,20 @@ class AuthService {
   final _auth = FirebaseAuth.instance;
   final _db   = FirebaseFirestore.instance;
 
+
+  Future<User?> loginWithEmail({
+    required String email,
+    required String password,
+  }) async {
+      // 1: Try and login with email/password. Let errors bubble up
+      final cred = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return cred.user;
+  }
+
+
   /// Creates the user in Firebase Auth, then writes extra fields to Firestore.
   Future<User?> registerWithEmail({
     required String email,
@@ -34,4 +48,14 @@ class AuthService {
 
     return user;
   }
+
+  /// Logs out the current user
+  Future<void> logOut() async {
+    await _auth.signOut();
+  }
+
+  bool isLoggedIn() {
+    return FirebaseAuth.instance.currentUser != null;
+  }
+
 }

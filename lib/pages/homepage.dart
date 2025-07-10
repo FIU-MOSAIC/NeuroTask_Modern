@@ -11,7 +11,7 @@ import 'package:neurotask_ng/pages/login/login.dart';
 //import 'package:http/http.dart' as http;
 //import 'package:neuro_task/pages/games/narration.dart';
 //import 'package:neuro_task/pages/games/picture_test.dart';
-import 'package:neurotask_ng/pages/games/target_game.dart';
+import 'package:neurotask_ng/games/target_game.dart';
 import 'package:neurotask_ng/pages/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

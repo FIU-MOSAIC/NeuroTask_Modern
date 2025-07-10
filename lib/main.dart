@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:neurotask_ng/pages/games/target_game.dart';
+import 'package:neurotask_ng/games/color_game.dart';
+import 'package:neurotask_ng/games/target_game.dart';
+import 'package:neurotask_ng/pages/gateway/auth_gateway.dart';
 import 'package:neurotask_ng/pages/mainMenu/mainMenu.dart';
 import 'package:neurotask_ng/pages/register/register.dart';
 import 'utils/firebase_options.dart';   
@@ -21,6 +24,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // GetMaterialApp is a wrapper around MaterialApp that allows for easy navigation between pages.
+    // GetX only loads the page when it is needed, GetX controllers are automatically managed, no need for state management setup.
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'NeuroTask',
@@ -28,12 +33,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
       ),
       //home: const MainMenu(),
-      initialRoute: '/target',
+      initialRoute: '/gateway',
       getPages: [
+        GetPage(name: '/gateway', page: () => AuthGatewayPage()),
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/register', page: () => const RegisterPage()),
         GetPage(name: '/home', page: () => const MainMenu()),
-        GetPage(name: '/target', page: () => const TargetGame())
+        GetPage(name: '/target', page: () => const TargetGame()),
+        GetPage(name: '/color', page: () => const ColorGame()),
+        //GetPage(name: '/memory-game', page: () => MemoryGameView()),
+        //GetPage(name: '/grandfather', page: ()=> const GrandFather()),
       ],
     );
   }
