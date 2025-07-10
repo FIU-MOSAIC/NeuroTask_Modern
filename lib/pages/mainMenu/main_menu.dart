@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:neurotask_ng/games/grandfather_passage/grandfather_passage.dart';
+import 'package:neurotask_ng/games/grandfather_passage/views/grandfather_passage_view.dart';
+import 'package:neurotask_ng/games/memory_game/controllers/memory_game_controller.dart';
 import 'package:neurotask_ng/services/auth_service.dart';
 
 class MainMenu extends StatelessWidget {
@@ -11,7 +12,19 @@ class MainMenu extends StatelessWidget {
     final controller = Get.put(MainMenuController());
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    var games = [GrandFather(),GrandFather(),GrandFather(),GrandFather(),GrandFather(),GrandFather()];
+
+    final games = [
+      {
+        'title': 'Grandfather Passage',
+        'icon': Icon(Icons.mic),
+        'onPressed': () => Get.toNamed('/grandfather'),
+      },
+      {
+        'title': 'Memory Game',
+        'icon': Icon(Icons.memory),
+        'onPressed': () => Get.toNamed('/memory-game'),
+      },
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -31,12 +44,12 @@ class MainMenu extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(10),
               child: SizedBox(
-              height: screenHeight * .4,
-              width: screenWidth * .4,
+                height: screenHeight * .4,
+                width: screenWidth * .4,
                 child: FloatingActionButton.extended(
-                  label: Text(games[index].title),
-                  icon: games[index].gameIcon,
-                  onPressed: () => Get.toNamed(games[index].route),
+                  label: Text(games[index]['title'] as String),
+                  icon: games[index]['icon'] as Icon,
+                  onPressed: games[index]['onPressed'] as void Function(),
                 ),
               ),
             ),
