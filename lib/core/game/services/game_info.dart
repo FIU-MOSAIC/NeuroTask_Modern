@@ -14,4 +14,4 @@ class GameInfo {
     required this.description,
     this.isImplemented = false,
   });
-} 
+}
