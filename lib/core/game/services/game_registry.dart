@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/game_info.dart';
+import 'game_info.dart';
 
 class GameRegistry {
   static final List<GameInfo> _games = [

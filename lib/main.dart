@@ -3,20 +3,19 @@ import 'package:get/get.dart';
 import 'package:neurotask_ng/games/visuospatial_game/view/visuospatial_view.dart';
 import 'package:neurotask_ng/pages/gateway/auth_gateway.dart';
 import 'package:neurotask_ng/pages/mainMenu/main_menu.dart';
-import 'package:neurotask_ng/games/grandfather_passage/grandfather_passage.dart';
 import 'package:neurotask_ng/pages/register/register.dart';
 import 'utils/firebase_options.dart';   
 import 'package:firebase_core/firebase_core.dart';
 import 'pages/login/login.dart';
-import 'games/memory_game/controllers/memory_game_controller.dart';
 import 'games/memory_game/views/memory_game_view.dart';
+import 'games/grandfather_passage/views/grandfather_passage_view.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  Get.put(MemoryGameController());
   runApp(const MyApp());
 }
 
@@ -44,7 +43,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/register', page: () => const RegisterPage()),
         GetPage(name: '/home', page: () => const MainMenu()),
         GetPage(name: '/memory-game', page: () => MemoryGameView()),
-        GetPage(name: '/grandfather', page: ()=> const GrandFather()),
+        GetPage(name: '/grandfather', page: ()=> GrandfatherPassageView()),
         GetPage(name: '/visuospatial-game', page: () => VisuospatialGameView())
       ],
     );

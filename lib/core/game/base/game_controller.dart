@@ -129,6 +129,30 @@ abstract class GameController extends GetxController {
     };
   }
 
+  // Show a generic completion dialog
+  void showCompletionDialog({
+    String title = 'Congratulations!',
+    String message = 'You finished the game!',
+    String buttonText = 'Back to Main Menu',
+  }) {
+    Get.dialog(
+      AlertDialog(
+        title: Text(title),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              resetGame();
+              Get.offAllNamed('/home');
+            },
+            child: Text(buttonText),
+          ),
+        ],
+      ),
+      barrierDismissible: false,
+    );
+  }
+
   @override
   void onClose() {
     _stopTimer();
