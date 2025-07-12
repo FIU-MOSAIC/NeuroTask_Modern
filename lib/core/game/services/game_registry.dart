@@ -57,7 +57,7 @@ class GameRegistry {
       gameIcon: Icons.record_voice_over,
       route: '/narration-reading',
       description: 'Speech and reading assessment',
-      isImplemented: false,
+      isImplemented: true,
     ),
   ];
 
