@@ -13,6 +13,7 @@ class NarrationGameController extends GameController implements Game{
   @override
   Icon get gameIcon => Icon(Icons.record_voice_over);
   List<String> sentences = TextRegristy.allSentences;
+  List<String> receivedSentences = [];
   RxInt counter = 0.obs;
   int passageLimit = 10;
 
@@ -25,9 +26,10 @@ class NarrationGameController extends GameController implements Game{
 
   @override
   void onGameEnd(){
-    //save results to firebase
+    //save receivedStentences and test duration to firebase 
     showCompletionDialog();
-    print("The test is complete");
+    //print(receivedSentences);
+    //print("The test is complete");
   }
 
   @override
@@ -47,12 +49,15 @@ class NarrationGameController extends GameController implements Game{
 
   @override
   void onUserInteraction(dynamic data){
+    if(data.runtimeType == String){
+      receivedSentences.add(data);
+    }
     if(counter < passageLimit){
       counter++;
-      print("the user read $counter sentences");
+      //print("the user read $counter sentences");
     }
     if(counter.toInt() == passageLimit){
-      print('the user finished the test in $timeElapsed seconds');
+      //print('the user finished the test in $timeElapsed seconds');
       onGameEnd();
     }
   }

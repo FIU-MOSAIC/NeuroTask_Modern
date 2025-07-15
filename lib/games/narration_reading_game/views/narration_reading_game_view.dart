@@ -65,7 +65,7 @@ class NarrationReadingGameView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ElevatedButton(
-              onPressed: () => controller.onUserInteraction(Void),
+              onPressed: () => controller.onUserInteraction(controller.sentences[controller.counter.toInt()]),
               child: Text("Next"),
             )
           ],
