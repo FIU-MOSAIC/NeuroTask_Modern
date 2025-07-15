@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
-import 'package:neurotask_ng/games/color_game.dart';
-import 'package:neurotask_ng/games/target_game.dart';
+import 'package:neurotask_ng/games/target_game/view/target_game_view.dart';
+import 'package:neurotask_ng/games/visuospatial_game/view/visuospatial_view.dart';
 import 'package:neurotask_ng/pages/gateway/auth_gateway.dart';
-import 'package:neurotask_ng/pages/mainMenu/mainMenu.dart';
+import 'package:neurotask_ng/pages/mainMenu/main_menu.dart';
 import 'package:neurotask_ng/pages/register/register.dart';
 import 'utils/firebase_options.dart';   
 import 'package:firebase_core/firebase_core.dart';
 import 'pages/login/login.dart';
+import 'games/memory_game/views/memory_game_view.dart';
+import 'games/grandfather_passage/views/grandfather_passage_view.dart';
+import 'games/color_game/view/color_game_view.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,15 +37,18 @@ class MyApp extends StatelessWidget {
       ),
       //home: const MainMenu(),
       initialRoute: '/gateway',
+
+      // Pages are only created when accessed, not when the app starts.
       getPages: [
         GetPage(name: '/gateway', page: () => AuthGatewayPage()),
         GetPage(name: '/login', page: () => const LoginPage()),
         GetPage(name: '/register', page: () => const RegisterPage()),
         GetPage(name: '/home', page: () => const MainMenu()),
-        GetPage(name: '/target', page: () => const TargetGame()),
-        GetPage(name: '/color', page: () => const ColorGame()),
-        //GetPage(name: '/memory-game', page: () => MemoryGameView()),
-        //GetPage(name: '/grandfather', page: ()=> const GrandFather()),
+        GetPage(name: '/memory-game', page: () => MemoryGameView()),
+        GetPage(name: '/grandfather', page: ()=> GrandfatherPassageView()),
+        GetPage(name: '/visuospatial-game', page: () => VisuospatialGameView()),
+        GetPage(name: '/color-game', page: () => ColorGameView()),
+        GetPage(name: '/target-game', page: () => TargetGameView()),
       ],
     );
   }

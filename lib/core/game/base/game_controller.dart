@@ -134,4 +134,22 @@ abstract class GameController extends GetxController {
     _stopTimer();
     super.onClose();
   }
+    // Inside GameController
+  void showCompletionDialog({
+    required String title,
+    required String message,
+  }) {
+    Get.defaultDialog(
+      title: title,
+      content: Text(
+        message,
+        textAlign: TextAlign.center,
+      ),
+      confirm: ElevatedButton(
+        onPressed: () => Get.back(),
+        child: const Text("OK"),
+      ),
+    );
+  }
+
 }

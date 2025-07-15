@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/game_info.dart';
+import 'game_info.dart';
 
 class GameRegistry {
   static final List<GameInfo> _games = [
@@ -22,14 +22,14 @@ class GameRegistry {
       gameIcon: Icons.track_changes,
       route: '/target-game',
       description: 'Reaction time and attention test',
-      isImplemented: false,
+      isImplemented: true,
     ),
     const GameInfo(
       title: 'Color Game',
       gameIcon: Icons.palette,
       route: '/color-game',
       description: 'Stroop test for cognitive flexibility',
-      isImplemented: false,
+      isImplemented: true,
     ),
     const GameInfo(
       title: 'Picture Test',

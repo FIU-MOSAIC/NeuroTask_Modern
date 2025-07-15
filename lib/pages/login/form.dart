@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:neurotask_ng/services/auth_service.dart';
 
 /// LoginPage's Form widget.
 /// - Holds all the stateful data the user provides when logging in.
@@ -64,11 +65,31 @@ class LoginFormController extends GetxController {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final _authService = AuthService();
 
-  void submit() {
-    if (formKey.currentState!.validate()) {
-      print('Logging in ${emailController.text}');
+  void submit() async {
+
+    if (!formKey.currentState!.validate()) return;
+
+    try {
+
+      final user = await _authService.loginWithEmail(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim()
+      );
+
+      if (user != null) {
+        Get.offAllNamed('/home');
+      }
+
+    } catch (e) {
+      Get.snackbar(
+        'Login Error',
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
+
   }
 
   @override
