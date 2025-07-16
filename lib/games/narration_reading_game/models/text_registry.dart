@@ -1,4 +1,4 @@
-class TextRegristy {
+class TextRegistry {
   static final List<String> _sentences = [
     'The fluffy unicorn juggled pickles while riding a unicycle.',
     'Yesterday, I ate a cloud for breakfast and it tasted like regret.',
