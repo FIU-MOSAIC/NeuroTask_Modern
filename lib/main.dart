@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:neurotask_ng/games/connect_the_dots/view/connect_the_dots_view.dart';
 import 'package:neurotask_ng/games/target_game/view/target_game_view.dart';
 import 'package:neurotask_ng/games/visuospatial_game/view/visuospatial_view.dart';
 import 'package:neurotask_ng/pages/gateway/auth_gateway.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/visuospatial-game', page: () => VisuospatialGameView()),
         GetPage(name: '/color-game', page: () => ColorGameView()),
         GetPage(name: '/target-game', page: () => TargetGameView()),
+        GetPage(name: '/connect-dots', page: () => ConnectTheDotsView()),
       ],
     );
   }

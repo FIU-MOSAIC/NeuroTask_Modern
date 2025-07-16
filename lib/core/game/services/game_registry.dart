@@ -43,7 +43,7 @@ class GameRegistry {
       gameIcon: Icons.gesture,
       route: '/connect-dots',
       description: 'Sequential processing and motor skills',
-      isImplemented: false,
+      isImplemented: true,
     ),
     const GameInfo(
       title: 'Visuospatial Test',
