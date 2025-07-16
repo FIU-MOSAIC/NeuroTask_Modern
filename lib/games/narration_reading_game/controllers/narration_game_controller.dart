@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:neurotask_ng/core/game/base/game_controller.dart';
-import 'package:neurotask_ng/games/narration_reading_game/models/text_regristy.dart';
+import 'package:neurotask_ng/games/narration_reading_game/models/text_registry.dart';
 
 class NarrationGameController extends GameController{
-  List<String> sentences = TextRegristy.allSentences;
+  List<String> sentences = TextRegistry.allSentences;
   List<String> receivedSentences = [];
   RxInt counter = 0.obs;
   int passageLimit = 10;
