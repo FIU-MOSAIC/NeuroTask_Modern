@@ -38,6 +38,8 @@ dependencies:
   firebase_auth: ^5.6.0
   firebase_core: ^3.14.0
   cloud_firestore: ^5.6.9
+  speech_to_text: ^6.3.0
+  intl: ^0.18.1 
 
 dev_dependencies:
   flutter_test:
