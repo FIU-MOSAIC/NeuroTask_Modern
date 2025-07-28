@@ -132,8 +132,6 @@ class VisuospatialGameView extends StatelessWidget {
   Color _getShapeColor(ShapeModel shape) {
     if (shape.isConnected.value) {
       return Colors.green; // Successfully connected
-    } else if (shape.number == controller.currentTarget.value) {
-      return Colors.orange; // Current target
     } else {
       return Colors.blue; // Default
     }

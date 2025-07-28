@@ -29,6 +29,11 @@ class VisuospatialController extends GameController {
     // Not used in drawing mode
   }
 
+  void _endGame() {
+    onGameEnd();
+    showCompletionDialog();
+  }
+
   Offset _findValidPosition(Random rand) {
     const double minDistance = 80.0; // Minimum distance between shape centers
     const int maxAttempts = 100; // Prevent infinite loops
@@ -106,7 +111,7 @@ class VisuospatialController extends GameController {
           score.value += 10;
 
           if (currentTarget.value == 10) {
-            endGame();
+            _endGame();
           } else {
             currentTarget.value++;
           }
