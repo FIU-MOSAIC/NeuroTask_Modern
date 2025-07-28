@@ -58,6 +58,12 @@ class ColorGameController extends GameController implements Game {
   @override
   Icon get gameIcon => Icon(Icons.palette);
 
+  @override
+  void onInit() {
+    super.onInit();
+    speechToText.initialize(); // Pre-initialize
+  }
+
   Future<void> initialize({
     required String id,
     required String email,
@@ -68,7 +74,6 @@ class ColorGameController extends GameController implements Game {
     patientEmail = email;
     screenHeight = height;
     screenWidth = width;
-    await speechToText.initialize();
   }
 
   @override
@@ -153,9 +158,11 @@ class ColorGameController extends GameController implements Game {
   }
 
   Future<void> startListening() async {
-    await speechToText.listen(onResult: (result) {
-      voiceToText.value = result.recognizedWords;
-    });
+    // Comment out for testing
+    // await speechToText.listen(onResult: (result) {
+    //   voiceToText.value = result.recognizedWords;
+    // });
+    voiceToText.value = "Testing"; // Mock response
   }
 
   Future<void> stopListening() async {

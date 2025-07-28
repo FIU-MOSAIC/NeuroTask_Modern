@@ -20,7 +20,7 @@ abstract class GameController extends GetxController {
   final RxInt timeElapsed = 0.obs;
   final Rx<GameState> gameState = GameState.initial.obs;
   
-  // Timer for tracking game duration
+  // Timer for tracking game durationl
   Timer? _gameTimer;
   DateTime? _gameStartTime;
 
