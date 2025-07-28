@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neurotask_ng/games/connect_the_dots/view/connect_the_dots_view.dart';
+import 'package:neurotask_ng/games/color_game/view/color_game_view.dart';
 import 'package:neurotask_ng/games/narration_reading_game/views/narration_reading_game_view.dart';
 import 'package:neurotask_ng/games/target_game/view/target_game_view.dart';
 import 'package:neurotask_ng/games/visuospatial_game/view/visuospatial_view.dart';
