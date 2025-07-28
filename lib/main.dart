@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/grandfather', page: ()=> GrandfatherPassageView()),
         GetPage(name: '/visuospatial-game', page: () => VisuospatialGameView()),
         GetPage(name: '/narration-reading', page: () => NarrationReadingGameView()),
+        GetPage(name: '/color-game', page: () => ColorGameView()),
         GetPage(name: '/connect-dots', page: () => ConnectTheDotsView()),
         GetPage(name: '/target-game', page: () => TargetGameView()),
       ],
