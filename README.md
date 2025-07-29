@@ -16,6 +16,24 @@ The original NeuroTask_Running project had several limitations that warranted a 
 
 Rather than patching over a fragile codebase, the team opted to start fresh. **NeuroTask_Modern** is designed as a forward-compatible solution, offering a cleaner development experience and serving as a maintainable reference for future contributors and researchers.
 
+## Getting Started
+
+Our project is a Flutter project using firebase as a backend for storing data on users. Boot up your IDE (preferably VS code) and begin setting up the Flutter dev environment (heres a link on installing Flutter for VS code: https://docs.flutter.dev/tools/vs-code.) 
+
+After you have a flutter dev environment set up properly with an Android or iOS emulator, clone the project and run ``flutter doctor`` to first identify everything is working properly and then ``flutter pub get`` to download all the necessary dependencies of the project. From there, you can being working on the project.
+
+### Dependencies
+Our main dependencies are GetX, firebase auth, firebase core, and cloud firestore. GetX is a tool that helps with managing/maintaining stateful widgets and routing for our project. The remaining firebase packages enable us to have the project communicate with the firebase database, manage the secure login/user-authentication, and store data from each user into the firebase database.
+
+### Routing
+We built routing to be simple for developers to work with and to avoid tedious additions to our main menu. GetX enables us to have a two-step implementation for any new games implemented into the application:
+1. **First Add new page to getPages**
+   - In the ``main.dart`` file we utilize GetX's getMaterialApp to automatically manage accessing and loading pages access the getPages array where we will add any new page to the list.
+2. **Update the game registry**
+   - The ``game_registry.dart`` file is essentially a list of all the games implemented or not with all the important information needed for any other part of the project to access and utilize (like the main menu.)
+   - The registry includes important information like game title, icon, route, description, and a IsImplemented bool for the developers.
+   - Simply add the game with the necessary information and the game will work (assuming its implemented.) The main menu is an example of how this registry can be used to access all the games implemented without worry of future additions of new games.
+
 ## Developer Instructions
 
 This project follows a lightweight but disciplined development workflow to ensure code quality and maintainability, even in the absence of enforced repository rules.
@@ -116,19 +134,3 @@ Add the following to /Users/carlos/Projects/NeuroTask_Modern/android/app/build.g
         ...
     }
 ```
-
-
-### Security Concerns
-
-One major issue from the legacy project was **performing API transactions directly from the client**. This practice exposes sensitive keys and breaks common security protocols.
-
-### Planned Solution
-
-To address this, we're:
-
-- Abstracting API interactions through a secure **backend service**.
-- Exploring solutions such as:
-  - **Serverless functions** (e.g., Firebase Functions)
-  - **Cloud-hosted backend services**
-
-These steps will allow the client app to remain keyless, minimizing attack surface and centralizing access control.
