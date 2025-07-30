@@ -18,12 +18,19 @@ Rather than patching over a fragile codebase, the team opted to start fresh. **N
 
 ## Getting Started
 
-Our project is a Flutter project using firebase as a backend for storing data on users. Boot up your IDE (preferably VS code) and begin setting up the Flutter dev environment (heres a link on installing Flutter for VS code: https://docs.flutter.dev/tools/vs-code.) 
+Our project is a Flutter project using Firebase as a backend for storing data on users. Boot up your IDE (preferably VS code) and begin setting up the Flutter dev environment (heres a link on installing Flutter for VS code: https://docs.flutter.dev/tools/vs-code.) 
 
-After you have a flutter dev environment set up properly with an Android or iOS emulator, clone the project and run ``flutter doctor`` to first identify everything is working properly and then ``flutter pub get`` to download all the necessary dependencies of the project. From there, you can being working on the project.
+After you have a flutter dev environment set up properly with an Android or iOS emulator, clone the project and run ``flutter doctor`` to first identify everything is working properly and then ``flutter pub get`` to download all the necessary dependencies of the project. 
+
+Lastly, make sure you have a device emulator setup. This project targets support for both iOS and Android devices so here are two resources for getting it setup on Android and iOS: 
+   - https://docs.flutter.dev/get-started/install/windows/mobile Android studio for VS code
+   - https://docs.flutter.dev/get-started/install/macos/mobile-ios iOS emulation for Xcode
+To run the project, you'll first need to run your given emulator with ``flutter emulators --launch`` and then use ``flutter run``
+
+From there, you can being working on the project.
 
 ### Dependencies
-Our main dependencies are GetX, firebase auth, firebase core, and cloud firestore. GetX is a tool that helps with managing/maintaining stateful widgets and routing for our project. The remaining firebase packages enable us to have the project communicate with the firebase database, manage the secure login/user-authentication, and store data from each user into the firebase database.
+Our main dependencies are GetX, Firebase Auth, Firebase Core, and Cloud Firestore. GetX is a tool that helps with managing/maintaining stateful widgets and routing for our project. The remaining Firebase packages enable us to have the project communicate with the Firebase database, manage the secure login/user-authentication, and store data from each user into the Firebase database.
 
 ### Routing
 We built routing to be simple for developers to work with and to avoid tedious additions to our main menu. GetX enables us to have a two-step implementation for any new games implemented into the application:
@@ -114,7 +121,7 @@ This document includes:
 - Technical priorities
 - Roadmap overview
 
-## Known Issues and Goals
+## Acknowledged Issues
 #### Firebase plugin incompatibility
 
 Firebase plugins depend on specific Android NDK version, but the project is configured to an older version.
@@ -124,8 +131,8 @@ Firebase plugins depend on specific Android NDK version, but the project is conf
 ```
 Your project is configured with Android NDK 26.3.11579264, but the following plugin(s) depend on a different Android NDK version:
 cloud_firestore requires Android NDK 27.0.12077973
-firebase_auth requires Android NDK 27.0.12077973
-firebase_core requires Android NDK 27.0.12077973
+Firebase_auth requires Android NDK 27.0.12077973
+Firebase_core requires Android NDK 27.0.12077973
 Fix this issue by using the highest Android NDK version (they are backward compatible).
 Add the following to /Users/carlos/Projects/NeuroTask_Modern/android/app/build.gradle.kts:
 
@@ -134,3 +141,12 @@ Add the following to /Users/carlos/Projects/NeuroTask_Modern/android/app/build.g
         ...
     }
 ```
+
+#### Deprecated APIs warning during Build
+
+An warning received on building the Android application saying that `Some input files use or override a deprecate API.` Which upon some research seems to be an issue with Java resources used by Flutter that are using deprecated APIs, meaning that our project has little to do with our code. This warning can be found in terminal messages after running ``flutter run`` or ``flutter apk build`` on an Android emulator.
+
+```
+   Note: Some input files use or override a deprecated API.
+```
+
