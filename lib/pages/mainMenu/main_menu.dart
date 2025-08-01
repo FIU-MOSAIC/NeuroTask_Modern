@@ -29,6 +29,7 @@ class MainMenu extends StatelessWidget {
             height: 60,
             margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: FloatingActionButton.extended(
+              heroTag: games[index].route,
               label: Text(games[index].title),
               icon: Icon(games[index].gameIcon),
               onPressed: () => Get.toNamed(games[index].route),
