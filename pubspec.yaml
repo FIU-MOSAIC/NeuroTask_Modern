@@ -38,8 +38,12 @@ dependencies:
   firebase_auth: ^5.6.0
   firebase_core: ^3.14.0
   cloud_firestore: ^5.6.9
-  speech_to_text: ^6.6.0
+  speech_to_text: 7.2.0
   intl: ^0.18.1
+
+# Add this section at the end of the file to take control.
+dependency_overrides:
+  speech_to_text: 7.1.0
 
 dev_dependencies:
   flutter_test:
