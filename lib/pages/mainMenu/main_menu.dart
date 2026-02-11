@@ -27,7 +27,7 @@ class MainMenu extends StatelessWidget {
         itemBuilder: (context, index) {
           return Container(
             height: 60,
-            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 50),
             child: FloatingActionButton.extended(
               label: Text(games[index].title),
               icon: Icon(games[index].gameIcon),
