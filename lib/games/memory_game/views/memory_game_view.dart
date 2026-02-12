@@ -91,7 +91,7 @@ class MemoryGameView extends StatelessWidget {
             child: card.isFlipped.value || card.isMatched.value
               ? Text(
                   card.value,
-                  style: TextStyle(fontSize: 32),
+                  style: TextStyle(fontSize: 64),
                 )
               : SizedBox.shrink(),
           ),

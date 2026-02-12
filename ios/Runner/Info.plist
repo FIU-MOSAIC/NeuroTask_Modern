@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>We use speech recognition to let you speak answers during the game.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We use the microphone to capture your voice for the game.</string>
 </dict>
 </plist>
