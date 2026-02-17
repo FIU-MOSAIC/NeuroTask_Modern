@@ -44,7 +44,7 @@ class GrandfatherPassageView extends StatelessWidget {
               foregroundColor: Colors.white,
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
             ),
-            child: Text('Start Game', style: TextStyle(fontSize: 18)),
+            child: Text('Start', style: TextStyle(fontSize: 18)),
           ),
         ],
       ),
@@ -82,7 +82,7 @@ class GrandfatherPassageView extends StatelessWidget {
           ElevatedButton.icon(
             onPressed: controller.isRecording.value ? null : controller.submit,
             icon: Icon(Icons.send),
-            label: Text('Submit'),
+            label: Text('Complete Recording'),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
               foregroundColor: Colors.white,
