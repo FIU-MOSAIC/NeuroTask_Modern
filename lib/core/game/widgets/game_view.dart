@@ -96,7 +96,12 @@ class GameView extends StatelessWidget {
                     context: context,
                     builder: (context) => AlertDialog(
                       title: const Text('Game Paused'),
-                      content: const Text('What would you like to do?'),
+                      content: const Text(
+                        'What would you like to do?',
+                        style: TextStyle(
+                          fontSize: 18
+                        ),
+                        ),
                       actions: [
                         TextButton(
                           onPressed: () {

@@ -137,8 +137,13 @@ abstract class GameController extends GetxController {
   }) {
     Get.dialog(
       AlertDialog(
-        title: Text(title),
-        content: Text(message),
+        title: Text(title,),
+        content: Text(
+          message,
+          style: TextStyle(
+            fontSize: 18
+          ),
+          ),
         actions: [
           TextButton(
             onPressed: () {

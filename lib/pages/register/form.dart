@@ -82,18 +82,6 @@ class _RegisterFormState extends State<RegisterForm> {
               border: OutlineInputBorder(),
             ),
           ),
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 60,
-            child: CupertinoPicker(
-              scrollController: _controller.activityController,
-              itemExtent: 40.0,
-              onSelectedItemChanged: _controller.updateActivity,
-              children: _controller.activities
-                  .map((activity) => Center(child: Text(activity)))
-                  .toList(),
-            ),
-          ),
           const SizedBox(height: 40),
           ElevatedButton(
             onPressed: () => _controller.submit(),
