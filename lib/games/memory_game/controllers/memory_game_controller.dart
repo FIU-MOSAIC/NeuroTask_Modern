@@ -21,7 +21,7 @@ class MemoryGameController extends GameController implements Game{
   Icon get gameIcon => Icon(Icons.memory);
 
   // Card values for the memory game
-  final List<String> cardValues = ['🐶', '🐱', '🐭', '🐹', '🐰'];
+  final List<String> cardValues = ['❤️', '☂️', '🔑', '📸'];
 
   @override
   void onGameStart() {
