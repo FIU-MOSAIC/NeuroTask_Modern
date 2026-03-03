@@ -7,6 +7,7 @@ import '../models/card_model.dart';
 class MemoryGameController extends GameController implements Game{
   final RxList<CardModel> cards = <CardModel>[].obs;
   final RxList<CardModel> flippedCards = <CardModel>[].obs;
+  final RxSet<int> mismatchCardIds = <int>{}.obs;
   final RxBool canFlip = true.obs;
   final RxInt moves = 0.obs;
   final RxInt pairsFound = 0.obs;
@@ -55,6 +56,7 @@ class MemoryGameController extends GameController implements Game{
     
     cards.value = cardPairs;
     flippedCards.clear();
+    mismatchCardIds.clear();
     moves.value = 0;
     pairsFound.value = 0;
     canFlip.value = true;
@@ -89,10 +91,15 @@ class MemoryGameController extends GameController implements Game{
           canFlip.value = true;
         }
       } else {
+        mismatchCardIds
+          ..clear()
+          ..addAll(flippedCards.map((card) => card.id));
+
         // No match - flip cards back after delay
         Future.delayed(Duration(milliseconds: 1000), () {
           flippedCards.forEach((card) => card.flip());
           flippedCards.clear();
+          mismatchCardIds.clear();
           canFlip.value = true;
         });
       }
@@ -112,6 +119,7 @@ class MemoryGameController extends GameController implements Game{
     // Clear all cards and reset game state
     cards.clear();
     flippedCards.clear();
+    mismatchCardIds.clear();
     moves.value = 0;
     pairsFound.value = 0;
     canFlip.value = true;

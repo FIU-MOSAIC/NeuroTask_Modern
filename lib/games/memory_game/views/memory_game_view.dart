@@ -87,8 +87,10 @@ class MemoryGameView extends StatelessWidget {
               decoration: BoxDecoration(
                 color: card.isMatched.value
                   ? Colors.green.shade300 
-                  : card.isFlipped.value
+                  : controller.mismatchCardIds.contains(card.id)
                       ? Colors.red.shade300
+                      : card.isFlipped.value
+                      ? Colors.yellow.shade300
                       : Colors.blue.shade300,
               borderRadius: BorderRadius.circular(8),
             ),
