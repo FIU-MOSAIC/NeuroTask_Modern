@@ -54,7 +54,7 @@ class MemoryGameView extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         double spacing = 6;
-        int crossAxisCount = 4;
+        int crossAxisCount = 2;
         // childAspectRatio < 1 makes the cards taller than they are wide
         return GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
@@ -62,7 +62,7 @@ class MemoryGameView extends StatelessWidget {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: spacing,
             mainAxisSpacing: spacing,
-            childAspectRatio: 0.51, // Try 0.65 for a tall card look
+            childAspectRatio: 1.1, // Try 0.65 for a tall card look
           ),
           itemCount: controller.cards.length,
           itemBuilder: (context, index) {

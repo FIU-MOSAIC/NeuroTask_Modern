@@ -9,32 +9,124 @@ class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(MainMenuController());
-    var games = GameRegistry.allGames;
+    final games = GameRegistry.allGames;
+    const pageColor = Color(0xFFEDEDF5);
+    const cardColor = Color(0xFFC9D1EE);
+    const primaryText = Color(0xFF0A2A66);
 
     return Scaffold(
+      backgroundColor: pageColor,
       appBar: AppBar(
-        title: const Text("Main Menu"),
+        backgroundColor: pageColor,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'Main Menu',
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.w500,
+            color: primaryText,
+          ),
+        ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.logout_sharp),
-            tooltip: "Log out",
-            onPressed: () => controller.logOut(),
+          Padding(
+            padding: const EdgeInsets.only(right: 6),
+            child: IconButton(
+              icon: const Icon(
+                Icons.logout,
+                size: 34,
+                color: Color(0xFF4E596D),
+              ),
+              tooltip: 'Log out',
+              onPressed: () => controller.logOut(),
+            ),
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: games.length,
-        itemBuilder: (context, index) {
-          return Container(
-            height: 60,
-            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 50),
-            child: FloatingActionButton.extended(
-              label: Text(games[index].title),
-              icon: Icon(games[index].gameIcon),
-              onPressed: () => Get.toNamed(games[index].route),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
+        child: GridView.builder(
+          itemCount: games.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 14,
+            mainAxisSpacing: 14,
+            childAspectRatio: 1.6,
+          ),
+          itemBuilder: (context, index) {
+            final game = games[index];
+            return _MenuCard(
+              title: game.title,
+              icon: game.gameIcon,
+              cardColor: cardColor,
+              textColor: primaryText,
+              onTap: () => Get.toNamed(game.route),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _MenuCard extends StatelessWidget {
+  const _MenuCard({
+    required this.title,
+    required this.icon,
+    required this.cardColor,
+    required this.textColor,
+    required this.onTap,
+  });
+
+  final String title;
+  final IconData icon;
+  final Color cardColor;
+  final Color textColor;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(24),
+        onTap: onTap,
+        child: Ink(
+          decoration: BoxDecoration(
+            color: cardColor,
+            borderRadius: BorderRadius.circular(24),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x17000000),
+                blurRadius: 10,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            child: Row(
+              children: [
+                Icon(icon, size: 50, color: textColor),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      height: 1.15,
+                      color: textColor,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
