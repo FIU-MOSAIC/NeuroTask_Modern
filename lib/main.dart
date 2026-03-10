@@ -3,23 +3,21 @@ import 'package:get/get.dart';
 import 'package:neurotask_ng/games/connect_the_dots/view/connect_the_dots_view.dart';
 import 'package:neurotask_ng/games/color_game/view/color_game_view.dart';
 import 'package:neurotask_ng/games/narration_reading_game/views/narration_reading_game_view.dart';
+import 'package:neurotask_ng/games/picture_test/view/picture_test_screen.dart';
 import 'package:neurotask_ng/games/target_game/view/target_game_view.dart';
 import 'package:neurotask_ng/games/visuospatial_game/view/visuospatial_view.dart';
 import 'package:neurotask_ng/pages/gateway/auth_gateway.dart';
 import 'package:neurotask_ng/pages/mainMenu/main_menu.dart';
 import 'package:neurotask_ng/pages/register/register.dart';
-import 'utils/firebase_options.dart';   
+import 'utils/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'pages/login/login.dart';
 import 'games/memory_game/views/memory_game_view.dart';
 import 'games/grandfather_passage/views/grandfather_passage_view.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -47,10 +45,14 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/register', page: () => const RegisterPage()),
         GetPage(name: '/home', page: () => const MainMenu()),
         GetPage(name: '/memory-game', page: () => MemoryGameView()),
-        GetPage(name: '/grandfather', page: ()=> GrandfatherPassageView()),
+        GetPage(name: '/grandfather', page: () => GrandfatherPassageView()),
         GetPage(name: '/visuospatial-game', page: () => VisuospatialGameView()),
-        GetPage(name: '/narration-reading', page: () => NarrationReadingGameView()),
+        GetPage(
+          name: '/narration-reading',
+          page: () => NarrationReadingGameView(),
+        ),
         GetPage(name: '/color-game', page: () => ColorGameView()),
+        GetPage(name: '/picture-test', page: () => PictureTestScreen()),
         GetPage(name: '/connect-dots', page: () => ConnectTheDotsView()),
         GetPage(name: '/target-game', page: () => TargetGameView()),
       ],

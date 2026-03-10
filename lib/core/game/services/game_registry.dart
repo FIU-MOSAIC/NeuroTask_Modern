@@ -36,7 +36,7 @@ class GameRegistry {
       gameIcon: Icons.image,
       route: '/picture-test',
       description: 'Visual recognition and naming',
-      isImplemented: false,
+      isImplemented: true,
     ),
     const GameInfo(
       title: 'Connect The Dots',
@@ -62,10 +62,10 @@ class GameRegistry {
   ];
 
   static List<GameInfo> get allGames => _games;
-  
-  static List<GameInfo> get implementedGames => 
-    _games.where((game) => game.isImplemented).toList();
-  
-  static List<GameInfo> get availableGames => 
-    _games.where((game) => game.isImplemented).toList();
-} 
+
+  static List<GameInfo> get implementedGames =>
+      _games.where((game) => game.isImplemented).toList();
+
+  static List<GameInfo> get availableGames =>
+      _games.where((game) => game.isImplemented).toList();
+}
